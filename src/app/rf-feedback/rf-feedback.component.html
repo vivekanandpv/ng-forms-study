@@ -1,0 +1,166 @@
+<h3>Feedback Form</h3>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="container">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="firstname" class="form-label">First Name:</label>
+      <input
+        type="text"
+        id="firstname"
+        formControlName="firstname"
+        class="form-control"
+        required
+      />
+      <div
+        *ngIf="
+          myForm.get('firstname')?.invalid &&
+          (myForm.get('firstname')?.dirty || myForm.get('firstname')?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="myForm.get('firstname')?.errors?.['required']">
+          First Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="lastname" class="form-label">Last Name:</label>
+      <input
+        type="text"
+        id="lastname"
+        formControlName="lastname"
+        class="form-control"
+        required
+      />
+      <div
+        *ngIf="
+          myForm.get('lastname')?.invalid &&
+          (myForm.get('lastname')?.dirty || myForm.get('lastname')?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="myForm.get('lastname')?.errors?.['required']">
+          Last Name is required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="form-control"
+      required
+    />
+    <div
+      *ngIf="
+        myForm.get('email')?.invalid &&
+        (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+      "
+      class="text-danger"
+    >
+      <div *ngIf="myForm.get('email')?.errors?.['required']">
+        Email is required.
+      </div>
+      <div *ngIf="myForm.get('email')?.errors?.['email']">
+        Please enter a valid email address.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="age" class="form-label">Age:</label>
+    <input
+      type="number"
+      id="age"
+      formControlName="age"
+      class="form-control"
+      required
+    />
+    <div
+      *ngIf="
+        myForm.get('age')?.invalid &&
+        (myForm.get('age')?.dirty || myForm.get('age')?.touched)
+      "
+      class="text-danger"
+    >
+      <div *ngIf="myForm.get('age')?.errors?.['required']">
+        Age is required.
+      </div>
+      <div *ngIf="myForm.get('age')?.errors?.['min']">
+        You must be at least 18 years old.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      id="newsletter"
+      formControlName="newsletter"
+      class="form-check-input"
+    />
+    <label for="newsletter" class="form-check-label"
+      >Subscribe to Newsletter</label
+    >
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Exercise Frequency:</label>
+    <div class="form-check">
+      <input
+        type="radio"
+        id="daily"
+        formControlName="exercise"
+        value="daily"
+        class="form-check-input"
+      />
+      <label for="daily" class="form-check-label">Daily</label>
+    </div>
+    <div class="form-check">
+      <input
+        type="radio"
+        id="alternative"
+        formControlName="exercise"
+        value="alternative days"
+        class="form-check-input"
+      />
+      <label for="alternative" class="form-check-label">Alternative Days</label>
+    </div>
+    <div class="form-check">
+      <input
+        type="radio"
+        id="weekly"
+        formControlName="exercise"
+        value="weekly"
+        class="form-check-input"
+      />
+      <label for="weekly" class="form-check-label">Weekly</label>
+    </div>
+    <div class="form-check">
+      <input
+        type="radio"
+        id="no exercise"
+        formControlName="exercise"
+        value="no exercise"
+        class="form-check-input"
+      />
+      <label for="no exercise" class="form-check-label">No Exercise</label>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="comments" class="form-label">Comments:</label>
+    <textarea
+      id="comments"
+      formControlName="comments"
+      class="form-control"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">
+    Submit
+  </button>
+</form>
