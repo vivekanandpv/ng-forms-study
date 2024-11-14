@@ -77,10 +77,9 @@
   </button>
 
   <div formArrayName="contacts">
-    <div
-      *ngFor="let contact of contacts.controls; let i = index"
-      class="border rounded p-3 mb-3"
-    >
+    @for (contact of contacts.controls; track getTrackIdForFormArray($index,
+    contact); let i = $index) {
+    <div class="border rounded p-3 mb-3">
       <div [formGroupName]="i">
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -127,6 +126,7 @@
         </button>
       </div>
     </div>
+    }
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">

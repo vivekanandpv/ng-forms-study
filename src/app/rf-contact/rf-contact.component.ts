@@ -51,4 +51,8 @@ export class RfContactComponent {
       console.log('Form submitted:', this.contactForm.value);
     }
   }
+
+  getTrackIdForFormArray(index: number, item: any) {
+    return `${index}-${JSON.stringify(item.value)}`;
+  }
 }
